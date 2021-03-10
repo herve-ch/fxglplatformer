@@ -10,6 +10,7 @@ import com.almasb.fxgl.app.scene.GameView;
 import com.almasb.fxgl.app.scene.LoadingScene;
 import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.app.scene.Viewport;
+import com.almasb.fxgl.core.math.FXGLMath;
 import com.almasb.fxgl.core.util.LazyValue;
 import static com.almasb.fxgl.dsl.FXGL.addUINode;
 import static com.almasb.fxgl.dsl.FXGL.despawnWithDelay;
@@ -27,6 +28,7 @@ import static com.almasb.fxgl.dsl.FXGL.isMobile;
 import static com.almasb.fxgl.dsl.FXGL.loopBGM;
 import static com.almasb.fxgl.dsl.FXGL.onCollisionBegin;
 import static com.almasb.fxgl.dsl.FXGL.onCollisionOneTimeOnly;
+import static com.almasb.fxgl.dsl.FXGL.random;
 import static com.almasb.fxgl.dsl.FXGL.runOnce;
 import static com.almasb.fxgl.dsl.FXGL.set;
 import static com.almasb.fxgl.dsl.FXGL.setLevelFromMap;
@@ -41,6 +43,8 @@ import com.almasb.fxgl.entity.level.Level;
 import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.input.view.KeyView;
 import com.almasb.fxgl.input.virtual.VirtualButton;
+import com.almasb.fxgl.particle.ParticleComponent;
+import com.almasb.fxgl.particle.ParticleEmitters;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import java.util.Map;
 import javafx.geometry.Point2D;
@@ -49,6 +53,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TouchEvent;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
+import static pf.herve.fxglplatformer.GameType.BUTTON;
 import static pf.herve.fxglplatformer.GameType.DOOR_BOT;
 import static pf.herve.fxglplatformer.GameType.DOOR_TOP;
 import static pf.herve.fxglplatformer.GameType.EXIT_SIGN;
@@ -65,13 +70,12 @@ import pf.herve.fxglplatformer.ui.LevelEndScene;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author rv_ch
  */
 public class GameApp extends GameApplication {
-    
+
     private static final int MAX_LEVEL = 5;
     private static final int STARTING_LEVEL = 0;
 
@@ -128,27 +132,27 @@ public class GameApp extends GameApplication {
             }
         }, KeyCode.W, VirtualButton.A);
 
-//        getInput().addAction(new UserAction("Use") {
-//            @Override
-//            protected void onActionBegin() {
-//                getGameWorld().getEntitiesByType(BUTTON)
-//                        .stream()
-//                        .filter(btn -> btn.hasComponent(CollidableComponent.class) && player.isColliding(btn))
-//                        .forEach(btn -> {
-//                            btn.removeComponent(CollidableComponent.class);
-//
-//                            Entity keyEntity = btn.getObject("keyEntity");
-//                            keyEntity.setProperty("activated", true);
-//
-//                            KeyView view = (KeyView) keyEntity.getViewComponent().getChildren().get(0);
-//                            view.setKeyColor(Color.RED);
-//
-//                            makeExitDoor();
-//                        });
-//            }
-//        }, KeyCode.E, VirtualButton.B);
+        getInput().addAction(new UserAction("Use") {
+            @Override
+            protected void onActionBegin() {
+                getGameWorld().getEntitiesByType(BUTTON)
+                        .stream()
+                        .filter(btn -> btn.hasComponent(CollidableComponent.class) && player.isColliding(btn))
+                        .forEach(btn -> {
+                            btn.removeComponent(CollidableComponent.class);
+
+                            Entity keyEntity = btn.getObject("keyEntity");
+                            keyEntity.setProperty("activated", true);
+
+                            KeyView view = (KeyView) keyEntity.getViewComponent().getChildren().get(0);
+                            view.setKeyColor(Color.RED);
+
+                            makeExitDoor();
+                        });
+            }
+        }, KeyCode.E, VirtualButton.B);
     }
-//
+
     @Override
     protected void initGameVars(Map<String, Object> vars) {
         vars.put("level", STARTING_LEVEL);
@@ -159,7 +163,7 @@ public class GameApp extends GameApplication {
     @Override
     protected void onPreInit() {
         getSettings().setGlobalMusicVolume(0.25);
-        loopBGM("BGM_dash_runner.wav");
+        loopBGM("Ys Seven OST - Mother Earth Altago.mp3");
     }
 
     @Override
@@ -172,6 +176,18 @@ public class GameApp extends GameApplication {
         // player must be spawned after call to nextLevel, otherwise player gets removed
         // before the update tick _actually_ adds the player to game world
         player = spawn("player", 50, 50);
+        var emitter = ParticleEmitters.newExplosionEmitter(300);
+
+        emitter.setMaxEmissions(Integer.MAX_VALUE);
+        emitter.setNumParticles(50);
+        emitter.setEmissionRate(0.86);
+        emitter.setSize(1, 24);
+        emitter.setScaleFunction(i -> FXGLMath.randomPoint2D().multiply(0.01));
+        emitter.setExpireFunction(i -> Duration.seconds(random(0.25, 2.5)));
+        emitter.setAccelerationFunction(() -> Point2D.ZERO);
+        emitter.setVelocityFunction(i -> FXGLMath.randomPoint2D().multiply(random(1, 45)));
+
+        player.addComponent(new ParticleComponent(emitter));
 
         set("player", player);
 
@@ -299,11 +315,11 @@ public class GameApp extends GameApplication {
 
         set("levelTime", 0.0);
 
-        Level level = setLevelFromMap("tmx/level" + levelNum  + ".tmx");
+        Level level = setLevelFromMap("tmx/level" + levelNum + ".tmx");
 
         var shortestTime = level.getProperties().getDouble("star1time");
 
-        var levelTimeData = new LevelEndScene.LevelTimeData(shortestTime * 2.4, shortestTime*1.3, shortestTime);
+        var levelTimeData = new LevelEndScene.LevelTimeData(shortestTime * 2.4, shortestTime * 1.3, shortestTime);
 
         set("levelTimeData", levelTimeData);
     }
