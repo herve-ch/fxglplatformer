@@ -163,7 +163,8 @@ public class GameApp extends GameApplication {
     @Override
     protected void onPreInit() {
         getSettings().setGlobalMusicVolume(0.25);
-        loopBGM("Ys Seven OST - Mother Earth Altago.mp3");
+        loopBGM("Altago.mp3");
+
     }
 
     @Override
