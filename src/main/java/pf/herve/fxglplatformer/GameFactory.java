@@ -24,10 +24,13 @@ import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.physics.box2d.dynamics.BodyType;
 import com.almasb.fxgl.physics.box2d.dynamics.FixtureDef;
 import com.almasb.fxgl.ui.FontType;
+import java.awt.Paint;
 import javafx.geometry.Point2D;
 import javafx.scene.CacheHint;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import static pf.herve.fxglplatformer.GameType.BUTTON;
 import static pf.herve.fxglplatformer.GameType.DOOR_BOT;
@@ -150,8 +153,6 @@ public class GameFactory implements EntityFactory {
                 .zIndex(100)
                 .build();
     }
-    
-    
 
     @Spawns("button")
     public Entity newButton(SpawnData data) {
@@ -169,12 +170,20 @@ public class GameFactory implements EntityFactory {
     @Spawns("messagePrompt")
     public Entity newMessagePrompt(SpawnData data) {
         var text = getUIFactoryService().newText(data.get("message"), Color.BLACK, FontType.GAME, 20.0);
-        text.setStrokeWidth(2);
+        var stack = new StackPane();
+        var rect = new Rectangle(20, 20, text.getText().length()*10, 50);
 
+        text.setStrokeWidth(2);
+        text.setTranslateY(-100);
+        rect.setFill(Color.WHITE);
+        rect.setStroke(Color.BLACK);
+        rect.setTranslateY(-100);
+
+        stack.getChildren().addAll(rect, text);
         return entityBuilder(data)
                 .type(MESSAGE_PROMPT)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
-                .view(text)
+                .view(stack)
                 .with(new CollidableComponent(true))
                 .opacity(0)
                 .build();
@@ -185,7 +194,7 @@ public class GameFactory implements EntityFactory {
         return entityBuilder(data)
                 .type(SHEEPOU)
                 //.bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
-                 .viewWithBBox(texture("sheepou.png", 100, 100))
+                .viewWithBBox(texture("sheepou.png", 100, 100))
                 .with(new CollidableComponent(true))
                 .build();
     }
