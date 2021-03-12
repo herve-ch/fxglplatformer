@@ -40,7 +40,7 @@
   <object id="22" type="sheepou" x="545.045" y="529.282" width="79.8133" height="71.731"/>
   <object id="25" type="messagePrompt" x="444" y="529" width="86" height="61">
    <properties>
-    <property name="message" value="Hello from sheepou"/>
+    <property name="message" value="Hello je suis cheepou, suis le chemin"/>
    </properties>
   </object>
  </objectgroup>

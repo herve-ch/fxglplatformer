@@ -45,7 +45,7 @@ public class LevelEndScene extends SubScene {
 
         VBox.setVgrow(gradeBox, Priority.ALWAYS);
 
-        var textContinue = getUIFactoryService().newText("Tap to continue", Color.WHITE, 11.0);
+        var textContinue = getUIFactoryService().newText("Cliques pour continuer", Color.WHITE, 11.0);
         textContinue.visibleProperty().bind(isAnimationDone);
 
         animationBuilder(this)
@@ -99,7 +99,7 @@ public class LevelEndScene extends SubScene {
 
         LevelTimeData timeData = geto("levelTimeData");
 
-        textUserTime.setText(String.format("Your time: %.2f sec!", userTime.toSeconds()));
+        textUserTime.setText(String.format("Temps: %.2f sec!", userTime.toSeconds()));
 
         gradeBox.getChildren().setAll(
                 new Grade(Duration.seconds(timeData.star1), userTime),
