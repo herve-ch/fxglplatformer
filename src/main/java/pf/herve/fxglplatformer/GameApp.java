@@ -90,6 +90,7 @@ public class GameApp extends GameApplication {
             }
         });
         settings.setApplicationMode(ApplicationMode.DEVELOPER);
+        settings.setDeveloperMenuEnabled(true);
     }
 
     private LazyValue<LevelEndScene> levelEndScene = new LazyValue<>(() -> new LevelEndScene());
@@ -177,18 +178,18 @@ public class GameApp extends GameApplication {
         // player must be spawned after call to nextLevel, otherwise player gets removed
         // before the update tick _actually_ adds the player to game world
         player = spawn("player", 50, 50);
-        var emitter = ParticleEmitters.newExplosionEmitter(300);
-
-        emitter.setMaxEmissions(Integer.MAX_VALUE);
-        emitter.setNumParticles(50);
-        emitter.setEmissionRate(0.86);
-        emitter.setSize(1, 24);
-        emitter.setScaleFunction(i -> FXGLMath.randomPoint2D().multiply(0.01));
-        emitter.setExpireFunction(i -> Duration.seconds(random(0.25, 2.5)));
-        emitter.setAccelerationFunction(() -> Point2D.ZERO);
-        emitter.setVelocityFunction(i -> FXGLMath.randomPoint2D().multiply(random(1, 45)));
-
-        player.addComponent(new ParticleComponent(emitter));
+//        var emitter = ParticleEmitters.newExplosionEmitter(300);
+//
+//        emitter.setMaxEmissions(Integer.MAX_VALUE);
+//        emitter.setNumParticles(50);
+//        emitter.setEmissionRate(0.86);
+//        emitter.setSize(1, 24);
+//        emitter.setScaleFunction(i -> FXGLMath.randomPoint2D().multiply(0.01));
+//        emitter.setExpireFunction(i -> Duration.seconds(random(0.25, 2.5)));
+//        emitter.setAccelerationFunction(() -> Point2D.ZERO);
+//        emitter.setVelocityFunction(i -> FXGLMath.randomPoint2D().multiply(random(1, 45)));
+//
+//        player.addComponent(new ParticleComponent(emitter));
 
         set("player", player);
 

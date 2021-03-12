@@ -38,6 +38,7 @@ import static pf.herve.fxglplatformer.GameType.KEY_PROMPT;
 import static pf.herve.fxglplatformer.GameType.MESSAGE_PROMPT;
 import static pf.herve.fxglplatformer.GameType.PLATFORM;
 import static pf.herve.fxglplatformer.GameType.PLAYER;
+import static pf.herve.fxglplatformer.GameType.SHEEPOU;
 import pf.herve.fxglplatformer.components.PlayerComponent;
 
 /**
@@ -174,6 +175,16 @@ public class GameFactory implements EntityFactory {
                 .view(text)
                 .with(new CollidableComponent(true))
                 .opacity(0)
+                .build();
+    }
+
+    @Spawns("sheepou")
+    public Entity newSheepou(SpawnData data) {
+        return entityBuilder(data)
+                .type(SHEEPOU)
+                //.bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                 .viewWithBBox(texture("sheepou.png", 100, 100))
+                .with(new CollidableComponent(true))
                 .build();
     }
 }
