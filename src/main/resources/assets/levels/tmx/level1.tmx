@@ -37,7 +37,7 @@
   <object id="19" type="doorBot" gid="58" x="980" y="630" width="70" height="70"/>
   <object id="20" type="doorTop" gid="46" x="980" y="560" width="70" height="70"/>
   <object id="21" type="exitTrigger" x="630" y="560" width="210" height="70"/>
-  <object id="22" type="sheepou" x="546.045" y="519.282" width="79.8133" height="71.731"/>
+  <object id="22" type="sheepou" x="545.045" y="529.282" width="79.8133" height="71.731"/>
   <object id="25" type="messagePrompt" x="444" y="529" width="86" height="61">
    <properties>
     <property name="message" value="Hello from sheepou"/>

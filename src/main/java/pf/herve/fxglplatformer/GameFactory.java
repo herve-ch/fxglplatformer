@@ -194,7 +194,7 @@ public class GameFactory implements EntityFactory {
         return entityBuilder(data)
                 .type(SHEEPOU)
                 //.bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
-                .viewWithBBox(texture("sheepou.png", 100, 100))
+                .viewWithBBox(texture("sheepou.png", 36, 64))
                 .with(new CollidableComponent(true))
                 .build();
     }
