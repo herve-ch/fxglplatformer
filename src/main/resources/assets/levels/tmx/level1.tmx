@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="2021.02.15" orientation="orthogonal" renderorder="right-down" width="50" height="10" tilewidth="70" tileheight="70" infinite="0" nextlayerid="4" nextobjectid="30">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="50" height="10" tilewidth="70" tileheight="70" infinite="0" nextlayerid="4" nextobjectid="32">
  <properties>
   <property name="star1time" type="float" value="7"/>
  </properties>
@@ -21,7 +21,7 @@
 </data>
  </layer>
  <objectgroup id="2" name="Object Layer 1">
-  <object id="1" type="platform" x="0" y="630" width="3500"/>
+  <object id="1" type="platform" x="0" y="630" width="1466.67"/>
   <object id="15" type="platform" x="420" y="591" width="210" height="39"/>
   <object id="16" type="keyPrompt" x="70" y="560" width="140" height="70">
    <properties>
@@ -49,5 +49,7 @@
    </properties>
   </object>
   <object id="27" type="platform" x="1680" y="420" width="630"/>
+  <object id="30" type="doorBot" gid="58" x="3430" y="630" width="70" height="70"/>
+  <object id="31" type="platform" x="2525.33" y="628.667" width="974.667"/>
  </objectgroup>
 </map>
