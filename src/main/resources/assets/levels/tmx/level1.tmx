@@ -15,7 +15,7 @@
    <image width="600" height="459" source="kisspng-tree-forest-clip-art-transparent-tree-cliparts-5a77028a1da815.7666050415177488741215.png"/>
   </tile>
  </tileset>
- <layer id="1" name="Tile Layer 1" width="50" height="10" locked="1">
+ <layer id="1" name="Tile Layer 1" width="50" height="10">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
