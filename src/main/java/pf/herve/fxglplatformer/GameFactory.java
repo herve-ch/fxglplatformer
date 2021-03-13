@@ -186,6 +186,7 @@ public class GameFactory implements EntityFactory {
                 .type(MESSAGE_PROMPT)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .view(stack)
+                .zIndex(999)
                 .with(new CollidableComponent(true))
                 .opacity(0)
                 .build();
@@ -219,7 +220,6 @@ public class GameFactory implements EntityFactory {
 //                .zIndex(100)
 //                .build();
 //    }
-    
     @Spawns("lift")
     public Entity newLift(SpawnData data) {
         var physics = new PhysicsComponent();
@@ -232,10 +232,18 @@ public class GameFactory implements EntityFactory {
         var duration = Duration.seconds(distance / speed);
 
         return entityBuilder(data)
-                .type(LIFT)                
+                .type(LIFT)
                 .bbox(new HitBox(new Point2D(0, 50), BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height") - 50)))
                 .with(physics)
                 .with(new PhysicsLiftComponent(duration, distance, isGoingUp))
                 .build();
     }
+
+    @Spawns("tree")
+    public Entity newTree(SpawnData data) {
+
+        return entityBuilder(data)
+                .build();
+    }
+
 }

@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="50" height="10" tilewidth="70" tileheight="70" infinite="0" nextlayerid="4" nextobjectid="32">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="50" height="10" tilewidth="70" tileheight="70" infinite="0" nextlayerid="8" nextobjectid="34">
  <properties>
   <property name="star1time" type="float" value="20"/>
  </properties>
  <tileset firstgid="1" name="tiles_spritesheet" tilewidth="70" tileheight="70" spacing="2" tilecount="156" columns="12">
   <image source="tiles_spritesheet.png" width="914" height="936"/>
  </tileset>
- <layer id="1" name="Tile Layer 1" width="50" height="10">
+ <tileset firstgid="157" name="tree-variations" tilewidth="32" tileheight="32" tilecount="144" columns="16">
+  <image source="tree-variations.png" width="512" height="289"/>
+ </tileset>
+ <tileset firstgid="301" name="plants" tilewidth="600" tileheight="459" tilecount="1" columns="0">
+  <grid orientation="orthogonal" width="1" height="1"/>
+  <tile id="0">
+   <image width="600" height="459" source="kisspng-tree-forest-clip-art-transparent-tree-cliparts-5a77028a1da815.7666050415177488741215.png"/>
+  </tile>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="50" height="10" locked="1">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -51,5 +60,6 @@
   <object id="27" type="platform" x="1680" y="420" width="630"/>
   <object id="30" type="doorBot" gid="58" x="3430" y="630" width="70" height="70"/>
   <object id="31" type="platform" x="2525.33" y="628.667" width="974.667"/>
+  <object id="33" type="tree" gid="301" x="601.333" y="638" width="600" height="459"/>
  </objectgroup>
 </map>
