@@ -242,7 +242,7 @@ public class GameFactory implements EntityFactory {
     @Spawns("tree")
     public Entity newTree(SpawnData data) {
 
-        return entityBuilder(data)
+        return entityBuilder(data).scale(0.5, 0.5)
                 .build();
     }
 
