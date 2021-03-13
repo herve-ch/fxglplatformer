@@ -30,10 +30,10 @@ public class PlayerComponent extends Component {
 
     public PlayerComponent() {
 
-        Image image = image("player.png");
+        Image image = image("sheep_walk.png");
 
-        animIdle = new AnimationChannel(image, 4, 32, 42, Duration.seconds(1), 1, 1);
-        animWalk = new AnimationChannel(image, 4, 32, 42, Duration.seconds(0.66), 0, 3);
+        animIdle = new AnimationChannel(image, 4, 128, 128, Duration.seconds(1), 13,13 );
+        animWalk = new AnimationChannel(image, 4, 128, 128, Duration.seconds(0.66), 12, 15);
 
         texture = new AnimatedTexture(animIdle);
         texture.loop();
@@ -41,7 +41,7 @@ public class PlayerComponent extends Component {
 
     @Override
     public void onAdded() {
-        entity.getTransformComponent().setScaleOrigin(new Point2D(16, 21));
+        entity.getTransformComponent().setScaleOrigin(new Point2D(64, 64));
         entity.getViewComponent().addChild(texture);
 
         physics.onGroundProperty().addListener((obs, old, isOnGround) -> {

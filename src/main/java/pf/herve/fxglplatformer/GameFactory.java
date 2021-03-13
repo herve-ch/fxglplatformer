@@ -101,15 +101,15 @@ public class GameFactory implements EntityFactory {
     public Entity newPlayer(SpawnData data) {
         PhysicsComponent physics = new PhysicsComponent();
         physics.setBodyType(BodyType.DYNAMIC);
-        physics.addGroundSensor(new HitBox("GROUND_SENSOR", new Point2D(16, 38), BoundingShape.box(6, 8)));
+        physics.addGroundSensor(new HitBox("GROUND_SENSOR", new Point2D(64, 64), BoundingShape.box(6, 25)));
 
         // this avoids player sticking to walls
         physics.setFixtureDef(new FixtureDef().friction(0.0f));
 
         return entityBuilder(data)
                 .type(PLAYER)
-                .bbox(new HitBox(new Point2D(5, 5), BoundingShape.circle(12)))
-                .bbox(new HitBox(new Point2D(10, 25), BoundingShape.box(10, 17)))
+                //.bbox(new HitBox(new Point2D(5, 5), BoundingShape.circle(12)))
+                .bbox(new HitBox(new Point2D(40, 30), BoundingShape.box(50, 50)))
                 .with(physics)
                 .with(new CollidableComponent(true))
                 .with(new IrremovableComponent())

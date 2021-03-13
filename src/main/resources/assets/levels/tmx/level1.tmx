@@ -40,7 +40,7 @@
   <object id="22" type="sheepou" x="545.045" y="529.282" width="79.8133" height="71.731"/>
   <object id="25" type="messagePrompt" x="444" y="529" width="86" height="61">
    <properties>
-    <property name="message" value="Hello je suis cheepou, suis le chemin"/>
+    <property name="message" value="Hello je suis cheepou, je vais taider à retrouver ta forme humaine"/>
    </properties>
   </object>
   <object id="26" type="lift" gid="16" x="1540" y="630" width="70" height="70">
