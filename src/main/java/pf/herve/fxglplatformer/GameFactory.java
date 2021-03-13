@@ -246,4 +246,13 @@ public class GameFactory implements EntityFactory {
                 .build();
     }
 
+    @Spawns("champou")
+    public Entity newChampou(SpawnData data) {
+        return entityBuilder(data)
+                .type(SHEEPOU)
+                //.bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .viewWithBBox(texture("champou.png"))
+                .with(new CollidableComponent(true))
+                .build();
+    }
 }
