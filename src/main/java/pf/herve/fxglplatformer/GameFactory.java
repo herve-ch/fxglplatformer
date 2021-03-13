@@ -38,10 +38,12 @@ import static pf.herve.fxglplatformer.GameType.DOOR_TOP;
 import static pf.herve.fxglplatformer.GameType.EXIT_SIGN;
 import static pf.herve.fxglplatformer.GameType.EXIT_TRIGGER;
 import static pf.herve.fxglplatformer.GameType.KEY_PROMPT;
+import static pf.herve.fxglplatformer.GameType.LIFT;
 import static pf.herve.fxglplatformer.GameType.MESSAGE_PROMPT;
 import static pf.herve.fxglplatformer.GameType.PLATFORM;
 import static pf.herve.fxglplatformer.GameType.PLAYER;
 import static pf.herve.fxglplatformer.GameType.SHEEPOU;
+import pf.herve.fxglplatformer.components.PhysicsLiftComponent;
 import pf.herve.fxglplatformer.components.PlayerComponent;
 
 /**
@@ -171,7 +173,7 @@ public class GameFactory implements EntityFactory {
     public Entity newMessagePrompt(SpawnData data) {
         var text = getUIFactoryService().newText(data.get("message"), Color.BLACK, FontType.GAME, 20.0);
         var stack = new StackPane();
-        var rect = new Rectangle(20, 20, text.getText().length()*10, 50);
+        var rect = new Rectangle(20, 20, text.getText().length() * 10, 50);
 
         text.setStrokeWidth(2);
         text.setTranslateY(-100);
@@ -196,6 +198,44 @@ public class GameFactory implements EntityFactory {
                 //.bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .viewWithBBox(texture("sheepou.png", 36, 64))
                 .with(new CollidableComponent(true))
+                .build();
+    }
+
+    /*Pas de phisics*/
+//    @Spawns("lift")
+//    public Entity newLift(SpawnData data) {
+//        //var physics = new PhysicsComponent();       
+//        boolean isGoingUp =  true;
+//
+//        var lift = new LiftComponent();
+//        lift.setGoingUp(isGoingUp);
+//        lift.yAxisDistanceDuration(100, Duration.seconds(0.76));
+//
+//        return entityBuilder(data)
+//                .type(LIFT)
+//                .bbox(new HitBox(new Point2D(0, 50), BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height") - 50)))
+//                .with(lift)
+//                //.with(physics)
+//                .zIndex(100)
+//                .build();
+//    }
+    
+    @Spawns("lift")
+    public Entity newLift(SpawnData data) {
+        var physics = new PhysicsComponent();
+        physics.setBodyType(BodyType.KINEMATIC);
+
+        boolean isGoingUp = data.hasKey("up") ? data.get("up") : true;
+
+        var distance = (isGoingUp) ? data.getY() - data.<Integer>get("endY") : data.<Integer>get("endY") - data.getY();
+        var speed = 100;
+        var duration = Duration.seconds(distance / speed);
+
+        return entityBuilder(data)
+                .type(LIFT)                
+                .bbox(new HitBox(new Point2D(0, 50), BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height") - 50)))
+                .with(physics)
+                .with(new PhysicsLiftComponent(duration, distance, isGoingUp))
                 .build();
     }
 }
