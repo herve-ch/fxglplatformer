@@ -77,7 +77,7 @@ import pf.herve.fxglplatformer.ui.LevelEndScene;
 public class GameApp extends GameApplication {
 
     private static final int MAX_LEVEL = 5;
-    private static final int STARTING_LEVEL = 1;
+    private static final int STARTING_LEVEL = 3;
 
     @Override
     protected void initSettings(GameSettings settings) {
@@ -166,7 +166,7 @@ public class GameApp extends GameApplication {
     @Override
     protected void onPreInit() {
         getSettings().setGlobalMusicVolume(0.25);
-        loopBGM("Altago.mp3");
+       // loopBGM("Altago.mp3");
 
     }
 

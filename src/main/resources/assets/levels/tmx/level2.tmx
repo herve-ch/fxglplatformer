@@ -28,7 +28,7 @@
   <object id="18" type="doorBot" gid="58" x="980" y="630" width="70" height="70"/>
   <object id="19" type="doorTop" gid="46" x="980" y="560" width="70" height="70"/>
   <object id="20" type="exitTrigger" x="630" y="490" width="210" height="70"/>
-  <object id="21" type="champou" x="333.397" y="433.417" width="83.8545" height="49.5045"/>
+  <object id="21" type="champou" x="333.397" y="441.499" width="83.8545" height="49.5045"/>
   <object id="23" type="messagePrompt" x="327.336" y="545.56" width="89.9163" height="42.4324">
    <properties>
     <property name="message" value="Tatie Tiffany tu va t'en sortir!!"/>
