@@ -81,7 +81,7 @@ public class PlayerComponent extends Component {
 
 //        isBeingDamaged = true;
 
-        physics.setLinearVelocity(new Point2D(Math.signum(dmgVector.getX()) * 290, -300));
+        physics.setLinearVelocity(new Point2D(dmgVector.getX() * 290, -300));
 
         // Damage time 1 sec
         runOnce(() -> {
