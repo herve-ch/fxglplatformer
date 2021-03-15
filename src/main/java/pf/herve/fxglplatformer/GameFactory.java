@@ -5,6 +5,8 @@
  */
 package pf.herve.fxglplatformer;
 
+import pf.herve.fxglplatformer.components.PigComponent;
+import com.almasb.fxgl.core.math.FXGLMath;
 import static com.almasb.fxgl.dsl.FXGL.entityBuilder;
 import static com.almasb.fxgl.dsl.FXGL.getGameWorld;
 import static com.almasb.fxgl.dsl.FXGL.getUIFactoryService;
@@ -40,6 +42,7 @@ import static pf.herve.fxglplatformer.GameType.EXIT_TRIGGER;
 import static pf.herve.fxglplatformer.GameType.KEY_PROMPT;
 import static pf.herve.fxglplatformer.GameType.LIFT;
 import static pf.herve.fxglplatformer.GameType.MESSAGE_PROMPT;
+import static pf.herve.fxglplatformer.GameType.PIG;
 import static pf.herve.fxglplatformer.GameType.PLATFORM;
 import static pf.herve.fxglplatformer.GameType.PLAYER;
 import static pf.herve.fxglplatformer.GameType.SHEEPOU;
@@ -202,6 +205,27 @@ public class GameFactory implements EntityFactory {
                 .build();
     }
 
+    
+    
+    @Spawns("pig")
+    public Entity newPig(SpawnData data) {
+        int patrolEndX = data.get("patrolEndX");
+
+        var e = entityBuilder(data)
+                .type(PIG)
+                .bbox(new HitBox(new Point2D(10, 20), BoundingShape.box(232 / 4 - 20, 390 / 4 - 20)))
+                .with(new LiftComponent().xAxisDistanceDuration(patrolEndX - data.getX(), Duration.seconds(FXGLMath.random(1, 3))))
+                .with(new PigComponent())
+                .with(new CollidableComponent(true))
+                .build();
+
+        // fix zombie's height
+        e.setOnActive(() -> e.translateY(-25));
+
+        return e;
+    }
+
+    
     /*Pas de phisics*/
 //    @Spawns("lift")
 //    public Entity newLift(SpawnData data) {
