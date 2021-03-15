@@ -5,7 +5,10 @@
  */
 package pf.herve.fxglplatformer.components;
 
+import com.almasb.fxgl.dsl.FXGL;
 import static com.almasb.fxgl.dsl.FXGL.image;
+import static com.almasb.fxgl.dsl.FXGL.runOnce;
+import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.physics.PhysicsComponent;
 import com.almasb.fxgl.texture.AnimatedTexture;
@@ -64,6 +67,33 @@ public class PlayerComponent extends Component {
             }
         }
     }
+    
+    public void onHit(Entity attacker) {
+//        if (isBeingDamaged)
+//            return;
+
+//        if (hp.getValue() == 0)
+//            return;
+
+//        hp.setValue(hp.getValue() - 10);
+
+        Point2D dmgVector = entity.getPosition().subtract(attacker.getPosition());
+
+//        isBeingDamaged = true;
+
+        physics.setLinearVelocity(new Point2D(Math.signum(dmgVector.getX()) * 290, -300));
+
+        // Damage time 1 sec
+        runOnce(() -> {
+//            isBeingDamaged = false;
+            physics.setVelocityX(0);
+        }, Duration.seconds(1));
+
+//        if (hp.getValue() == 0) {
+//            FXGL.<MarioApp>getAppCast().onPlayerDied();
+//        }
+    }
+
 
     public void left() {
         getEntity().setScaleX(-1);

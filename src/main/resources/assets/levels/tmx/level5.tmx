@@ -29,7 +29,7 @@
   <object id="10" type="button" x="1190" y="560">
    <point/>
   </object>
-  <object id="11" type="pig" x="642.548" y="592.033" width="74.7619" height="44.453">
+  <object id="11" type="pig" x="644.568" y="569.807" width="74.7619" height="44.453">
    <properties>
     <property name="patrolEndX" type="int" value="900"/>
    </properties>

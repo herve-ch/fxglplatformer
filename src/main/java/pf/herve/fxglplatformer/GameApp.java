@@ -60,6 +60,7 @@ import static pf.herve.fxglplatformer.GameType.EXIT_SIGN;
 import static pf.herve.fxglplatformer.GameType.EXIT_TRIGGER;
 import static pf.herve.fxglplatformer.GameType.KEY_PROMPT;
 import static pf.herve.fxglplatformer.GameType.MESSAGE_PROMPT;
+import static pf.herve.fxglplatformer.GameType.PIG;
 import static pf.herve.fxglplatformer.GameType.PLAYER;
 import pf.herve.fxglplatformer.collisions.PlayerButtonHandler;
 import pf.herve.fxglplatformer.components.PlayerComponent;
@@ -251,6 +252,14 @@ public class GameApp extends GameApplication {
             runOnce(() -> {
                 despawnWithScale(entity, Duration.seconds(1), Interpolators.ELASTIC.EASE_IN());
             }, Duration.seconds(2.5));
+        });
+        
+         onCollisionBegin(PLAYER, PIG, (player, enemy) -> {
+            player.getComponent(PlayerComponent.class).onHit(enemy);
+
+//            if (enemy.getProperties().exists("isProjectile")) {
+//                enemy.removeFromWorld();
+//            }
         });
     }
 

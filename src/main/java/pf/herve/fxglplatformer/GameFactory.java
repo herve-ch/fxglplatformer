@@ -213,7 +213,7 @@ public class GameFactory implements EntityFactory {
 
         var e = entityBuilder(data)
                 .type(PIG)
-                .bbox(new HitBox(new Point2D(10, 20), BoundingShape.box(232 / 4 - 20, 390 / 4 - 20)))
+                .bbox(new HitBox(new Point2D(40, 50), BoundingShape.box(512 / 4 - 75, 512 / 4 - 90)))
                 .with(new LiftComponent().xAxisDistanceDuration(patrolEndX - data.getX(), Duration.seconds(FXGLMath.random(1, 3))))
                 .with(new PigComponent())
                 .with(new CollidableComponent(true))
