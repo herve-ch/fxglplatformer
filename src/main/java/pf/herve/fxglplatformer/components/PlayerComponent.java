@@ -120,4 +120,8 @@ public class PlayerComponent extends Component {
         jumps--;
     }
 
+    public void restoreHP() {
+        hp.setValue(hp.getMaxHP());
+    }
+
 }

@@ -335,6 +335,8 @@ public class GameApp extends GameApplication {
         if (player != null) {
             player.getComponent(PhysicsComponent.class).overwritePosition(new Point2D(50, 50));
             player.setZIndex(Integer.MAX_VALUE);
+            player.getComponent(PlayerComponent.class).restoreHP();
+            updateHpIndicator();
         }
 
         set("levelTime", 0.0);
