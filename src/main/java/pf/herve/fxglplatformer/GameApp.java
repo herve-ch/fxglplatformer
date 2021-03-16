@@ -82,7 +82,7 @@ import pf.herve.fxglplatformer.ui.LevelEndScene;
 public class GameApp extends GameApplication {
 
     private static final int MAX_LEVEL = 5;
-    private static final int STARTING_LEVEL = 4;
+    private static final int STARTING_LEVEL = 0;
 
     @Override
     protected void initSettings(GameSettings settings) {

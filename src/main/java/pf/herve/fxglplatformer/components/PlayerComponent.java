@@ -32,6 +32,7 @@ public class PlayerComponent extends Component {
     private HPComponent hp;
 
     private int jumps = 2;
+    private boolean isBeingDamaged = false;
 
     public PlayerComponent() {
 
@@ -71,28 +72,28 @@ public class PlayerComponent extends Component {
     }
 
     public void onHit(Entity attacker) {
-//        if (isBeingDamaged)
-//            return;
+        if (isBeingDamaged)
+            return;
 
-//        if (hp.getValue() == 0)
-//            return;
+        if (hp.getValue() == 0)
+            return;
         hp.setValue(hp.getValue() - 1);
         FXGL.<GameApp>getAppCast().updateHpIndicator();
 
         Point2D dmgVector = entity.getPosition().subtract(attacker.getPosition());
 
-//        isBeingDamaged = true;
+        isBeingDamaged = true;
         physics.setLinearVelocity(new Point2D(Math.signum(dmgVector.getX()) * 290, -300));
 
         // Damage time 1 sec
         runOnce(() -> {
-//            isBeingDamaged = false;
+            isBeingDamaged = false;
             physics.setVelocityX(0);
         }, Duration.seconds(1));
 
-//        if (hp.getValue() == 0) {
-//            FXGL.<MarioApp>getAppCast().onPlayerDied();
-//        }
+        if (hp.getValue() == 0) {
+            FXGL.<GameApp>getAppCast().onPlayerDied();
+        }
     }
 
     public void left() {
