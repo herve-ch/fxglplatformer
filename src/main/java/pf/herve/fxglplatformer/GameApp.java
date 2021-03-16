@@ -22,7 +22,9 @@ import static com.almasb.fxgl.dsl.FXGL.getGameWorld;
 import static com.almasb.fxgl.dsl.FXGL.getInput;
 import static com.almasb.fxgl.dsl.FXGL.getPhysicsWorld;
 import static com.almasb.fxgl.dsl.FXGL.getSettings;
+import static com.almasb.fxgl.dsl.FXGL.getUIFactory;
 import static com.almasb.fxgl.dsl.FXGL.geti;
+import static com.almasb.fxgl.dsl.FXGL.getip;
 import static com.almasb.fxgl.dsl.FXGL.inc;
 import static com.almasb.fxgl.dsl.FXGL.isMobile;
 import static com.almasb.fxgl.dsl.FXGL.loopBGM;
@@ -63,7 +65,9 @@ import static pf.herve.fxglplatformer.GameType.MESSAGE_PROMPT;
 import static pf.herve.fxglplatformer.GameType.PIG;
 import static pf.herve.fxglplatformer.GameType.PLAYER;
 import pf.herve.fxglplatformer.collisions.PlayerButtonHandler;
+import pf.herve.fxglplatformer.components.HPComponent;
 import pf.herve.fxglplatformer.components.PlayerComponent;
+import pf.herve.fxglplatformer.ui.HealthIndicator;
 import pf.herve.fxglplatformer.ui.LevelEndScene;
 
 /*
@@ -169,7 +173,7 @@ public class GameApp extends GameApplication {
     @Override
     protected void onPreInit() {
         getSettings().setGlobalMusicVolume(0.25);
-       // loopBGM("Altago.mp3");
+        // loopBGM("Altago.mp3");
 
     }
 
@@ -253,8 +257,8 @@ public class GameApp extends GameApplication {
                 despawnWithScale(entity, Duration.seconds(1), Interpolators.ELASTIC.EASE_IN());
             }, Duration.seconds(2.5));
         });
-        
-         onCollisionBegin(PLAYER, PIG, (player, enemy) -> {
+
+        onCollisionBegin(PLAYER, PIG, (player, enemy) -> {
             player.getComponent(PlayerComponent.class).onHit(enemy);
 
 //            if (enemy.getProperties().exists("isProjectile")) {
@@ -286,6 +290,11 @@ public class GameApp extends GameApplication {
 
     @Override
     protected void initUI() {
+
+        var hp = new HealthIndicator(player.getComponent(HPComponent.class));
+
+        addUINode(hp);
+        
         if (isMobile()) {
             var dpadView = getInput().createVirtualDpadView();
             var buttonsView = getInput().createXboxVirtualControllerView();

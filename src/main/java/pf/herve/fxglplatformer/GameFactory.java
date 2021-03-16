@@ -46,6 +46,7 @@ import static pf.herve.fxglplatformer.GameType.PIG;
 import static pf.herve.fxglplatformer.GameType.PLATFORM;
 import static pf.herve.fxglplatformer.GameType.PLAYER;
 import static pf.herve.fxglplatformer.GameType.SHEEPOU;
+import pf.herve.fxglplatformer.components.HPComponent;
 import pf.herve.fxglplatformer.components.PhysicsLiftComponent;
 import pf.herve.fxglplatformer.components.PlayerComponent;
 
@@ -116,6 +117,7 @@ public class GameFactory implements EntityFactory {
                 .with(physics)
                 .with(new CollidableComponent(true))
                 .with(new IrremovableComponent())
+                .with(new HPComponent(3))
                 .with(new PlayerComponent())
                 .build();
     }
@@ -205,8 +207,6 @@ public class GameFactory implements EntityFactory {
                 .build();
     }
 
-    
-    
     @Spawns("pig")
     public Entity newPig(SpawnData data) {
         int patrolEndX = data.get("patrolEndX");
@@ -225,7 +225,6 @@ public class GameFactory implements EntityFactory {
         return e;
     }
 
-    
     /*Pas de phisics*/
 //    @Spawns("lift")
 //    public Entity newLift(SpawnData data) {
