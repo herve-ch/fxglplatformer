@@ -104,7 +104,7 @@ public class GameApp extends GameApplication {
 
     private LazyValue<LevelEndScene> levelEndScene = new LazyValue<>(() -> new LevelEndScene());
     private Entity player;
-
+    private HealthIndicator hp;
     private boolean isMouseEvents = true;
 
     @Override
@@ -291,10 +291,10 @@ public class GameApp extends GameApplication {
     @Override
     protected void initUI() {
 
-        var hp = new HealthIndicator(player.getComponent(HPComponent.class));
+        hp = new HealthIndicator(player.getComponent(HPComponent.class));
 
         addUINode(hp);
-        
+
         if (isMobile()) {
             var dpadView = getInput().createVirtualDpadView();
             var buttonsView = getInput().createXboxVirtualControllerView();
@@ -346,6 +346,10 @@ public class GameApp extends GameApplication {
         var levelTimeData = new LevelEndScene.LevelTimeData(shortestTime * 2.4, shortestTime * 1.3, shortestTime);
 
         set("levelTimeData", levelTimeData);
+    }
+
+    public void updateHpIndicator() {
+        hp.updateLife();
     }
 
     public static void main(String[] args) {

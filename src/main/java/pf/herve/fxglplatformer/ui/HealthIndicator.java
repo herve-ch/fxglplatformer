@@ -37,7 +37,6 @@ public class HealthIndicator extends StackPane {
         for (int i = 0; i < playerHP.getValue(); i++) {
             lifeBox.getChildren().add(HEART.copy());
         }
-        getChildren().add(lifeBox);
 
     }
 
