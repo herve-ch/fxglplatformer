@@ -99,7 +99,7 @@ public class GameApp extends GameApplication {
         settings.setVersion("1");
         settings.setIntroEnabled(false);
         settings.setTitle("Cheepapou Game");
-        settings.setMainMenuEnabled(false);
+       // settings.setMainMenuEnabled(true);
     }
 
     private LazyValue<LevelEndScene> levelEndScene = new LazyValue<>(() -> new LevelEndScene());
@@ -279,7 +279,7 @@ public class GameApp extends GameApplication {
 
     private void nextLevel() {
         if (geti("level") == MAX_LEVEL) {
-            showMessage("You finished the demo!");
+            showMessage("Tiffany a bu la potion magique et a enfin retrouvé sa forme humaine!");
             return;
         }
 
