@@ -46,6 +46,7 @@ import static pf.herve.fxglplatformer.GameType.PIG;
 import static pf.herve.fxglplatformer.GameType.PLATFORM;
 import static pf.herve.fxglplatformer.GameType.PLAYER;
 import static pf.herve.fxglplatformer.GameType.SHEEPOU;
+import pf.herve.fxglplatformer.components.BouncingComponent;
 import pf.herve.fxglplatformer.components.HPComponent;
 import pf.herve.fxglplatformer.components.PhysicsLiftComponent;
 import pf.herve.fxglplatformer.components.PlayerComponent;
@@ -276,6 +277,7 @@ public class GameFactory implements EntityFactory {
                 //.bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
                 .viewWithBBox(texture("champou.png"))
                 .with(new CollidableComponent(true))
+                .with(new BouncingComponent())
                 .build();
     }
 }
