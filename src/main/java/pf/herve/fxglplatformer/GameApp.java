@@ -83,7 +83,7 @@ import pf.herve.fxglplatformer.ui.LevelEndScene;
 public class GameApp extends GameApplication {
 
     private static final int MAX_LEVEL = 5;
-    private static final int STARTING_LEVEL = 4;
+    private static final int STARTING_LEVEL = 0;
 
     @Override
     protected void initSettings(GameSettings settings) {
@@ -95,12 +95,12 @@ public class GameApp extends GameApplication {
                 return new GameLoadingScene();
             }
         });
-        settings.setApplicationMode(ApplicationMode.DEVELOPER);
+        settings.setApplicationMode(ApplicationMode.RELEASE);
         settings.setDeveloperMenuEnabled(true);
         settings.setVersion("1");
         settings.setIntroEnabled(false);
         settings.setTitle("Cheepapou Game");
-        // settings.setMainMenuEnabled(true);
+        settings.setMainMenuEnabled(true);
     }
 
     private LazyValue<LevelEndScene> levelEndScene = new LazyValue<>(() -> new LevelEndScene());
@@ -177,7 +177,7 @@ public class GameApp extends GameApplication {
     @Override
     protected void onPreInit() {
         getSettings().setGlobalMusicVolume(0.25);
-        // loopBGM("Altago.mp3");
+        loopBGM("bg.mp3");
 
     }
 
