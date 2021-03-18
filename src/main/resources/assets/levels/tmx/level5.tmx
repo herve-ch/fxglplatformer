@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="30" height="10" tilewidth="70" tileheight="70" infinite="0" nextlayerid="3" nextobjectid="14">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="30" height="10" tilewidth="70" tileheight="70" infinite="0" nextlayerid="3" nextobjectid="15">
  <properties>
   <property name="star1time" type="float" value="12"/>
  </properties>
@@ -21,12 +21,12 @@
 </data>
  </layer>
  <objectgroup id="2" name="Object Layer 1">
-  <object id="1" type="exitSign" gid="65" x="1960" y="630" width="70" height="70"/>
-  <object id="3" type="doorBot" gid="58" x="2030" y="630" width="70" height="70"/>
-  <object id="4" type="doorTop" gid="46" x="2030" y="560" width="70" height="70"/>
   <object id="6" type="platform" x="0" y="630" width="980" height="70"/>
   <object id="9" type="platform" x="1120" y="630" width="980" height="70"/>
   <object id="10" type="button" x="1190" y="560">
+   <properties>
+    <property name="final" type="bool" value="true"/>
+   </properties>
    <point/>
   </object>
   <object id="11" type="pig" x="644.568" y="569.807" width="74.7619" height="44.453">
@@ -34,5 +34,6 @@
     <property name="patrolEndX" type="int" value="900"/>
    </properties>
   </object>
+  <object id="14" type="potion" x="1845.22" y="525.011" width="113.811" height="87.6837" rotation="0.967086"/>
  </objectgroup>
 </map>

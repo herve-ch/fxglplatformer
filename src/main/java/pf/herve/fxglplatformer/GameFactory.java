@@ -12,6 +12,8 @@ import static com.almasb.fxgl.dsl.FXGL.getGameWorld;
 import static com.almasb.fxgl.dsl.FXGL.getUIFactoryService;
 import static com.almasb.fxgl.dsl.FXGL.texture;
 import com.almasb.fxgl.dsl.components.LiftComponent;
+import com.almasb.fxgl.dsl.components.OffscreenCleanComponent;
+import com.almasb.fxgl.dsl.components.ProjectileComponent;
 import com.almasb.fxgl.dsl.views.ScrollingBackgroundView;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.EntityFactory;
@@ -45,6 +47,7 @@ import static pf.herve.fxglplatformer.GameType.MESSAGE_PROMPT;
 import static pf.herve.fxglplatformer.GameType.PIG;
 import static pf.herve.fxglplatformer.GameType.PLATFORM;
 import static pf.herve.fxglplatformer.GameType.PLAYER;
+import static pf.herve.fxglplatformer.GameType.POTION;
 import static pf.herve.fxglplatformer.GameType.SHEEPOU;
 import pf.herve.fxglplatformer.components.BouncingComponent;
 import pf.herve.fxglplatformer.components.HPComponent;
@@ -97,6 +100,16 @@ public class GameFactory implements EntityFactory {
         return entityBuilder(data)
                 .type(DOOR_BOT)
                 .bbox(new HitBox(BoundingShape.box(data.<Integer>get("width"), data.<Integer>get("height"))))
+                .opacity(0)
+                .with(new CollidableComponent(false))
+                .build();
+    }
+    
+    @Spawns("potion")
+    public Entity newPotion(SpawnData data) {
+             return entityBuilder(data)
+                .type(POTION)
+                .viewWithBBox(texture("potion.gif").toAnimatedTexture(2, Duration.seconds(0.46)).loop())
                 .opacity(0)
                 .with(new CollidableComponent(false))
                 .build();

@@ -64,6 +64,7 @@ import static pf.herve.fxglplatformer.GameType.KEY_PROMPT;
 import static pf.herve.fxglplatformer.GameType.MESSAGE_PROMPT;
 import static pf.herve.fxglplatformer.GameType.PIG;
 import static pf.herve.fxglplatformer.GameType.PLAYER;
+import static pf.herve.fxglplatformer.GameType.POTION;
 import pf.herve.fxglplatformer.collisions.PlayerButtonHandler;
 import pf.herve.fxglplatformer.components.HPComponent;
 import pf.herve.fxglplatformer.components.PlayerComponent;
@@ -82,7 +83,7 @@ import pf.herve.fxglplatformer.ui.LevelEndScene;
 public class GameApp extends GameApplication {
 
     private static final int MAX_LEVEL = 5;
-    private static final int STARTING_LEVEL = 0;
+    private static final int STARTING_LEVEL = 4;
 
     @Override
     protected void initSettings(GameSettings settings) {
@@ -99,7 +100,7 @@ public class GameApp extends GameApplication {
         settings.setVersion("1");
         settings.setIntroEnabled(false);
         settings.setTitle("Cheepapou Game");
-       // settings.setMainMenuEnabled(true);
+        // settings.setMainMenuEnabled(true);
     }
 
     private LazyValue<LevelEndScene> levelEndScene = new LazyValue<>(() -> new LevelEndScene());
@@ -156,8 +157,11 @@ public class GameApp extends GameApplication {
 
                             KeyView view = (KeyView) keyEntity.getViewComponent().getChildren().get(0);
                             view.setKeyColor(Color.RED);
-
-                            makeExitDoor();
+                            if (btn.getProperties().exists("final") && btn.getProperties().getBoolean("final")) {
+                                makePotion();
+                            } else {
+                                makeExitDoor();
+                            }
                         });
             }
         }, KeyCode.E, VirtualButton.B);
@@ -241,6 +245,16 @@ public class GameApp extends GameApplication {
             });
         });
 
+        onCollisionOneTimeOnly(PLAYER, POTION, (player, potion) -> {
+            levelEndScene.get().onLevelFinish();
+
+            // the above runs in its own scene, so fade will wait until
+            // the user exits that scene
+            getGameScene().getViewport().fade(() -> {
+                nextLevel();
+            });
+        });
+
         onCollisionOneTimeOnly(PLAYER, MESSAGE_PROMPT, (player, prompt) -> {
             prompt.setOpacity(1);
 
@@ -275,6 +289,13 @@ public class GameApp extends GameApplication {
 
         doorTop.setOpacity(1);
         doorBot.setOpacity(1);
+    }
+
+    private void makePotion() {
+        var potion = getGameWorld().getSingleton(POTION);
+        potion.getComponent(CollidableComponent.class).setValue(true);
+
+        potion.setOpacity(1);
     }
 
     private void nextLevel() {
