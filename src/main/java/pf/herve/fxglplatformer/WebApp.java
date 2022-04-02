@@ -27,7 +27,7 @@ public class WebApp extends JProApplication {
 //        Scene scene = new Scene(root);
 //        stage.setScene(scene);
 
-        GameApplication.customLaunch(app, stage);
+        GameApplication.embeddedLaunch(app);
 
     }
 

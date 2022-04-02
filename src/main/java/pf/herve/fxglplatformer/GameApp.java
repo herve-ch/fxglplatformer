@@ -22,7 +22,6 @@ import static com.almasb.fxgl.dsl.FXGL.getGameWorld;
 import static com.almasb.fxgl.dsl.FXGL.getInput;
 import static com.almasb.fxgl.dsl.FXGL.getPhysicsWorld;
 import static com.almasb.fxgl.dsl.FXGL.getSettings;
-import static com.almasb.fxgl.dsl.FXGL.getUIFactory;
 import static com.almasb.fxgl.dsl.FXGL.geti;
 import static com.almasb.fxgl.dsl.FXGL.getip;
 import static com.almasb.fxgl.dsl.FXGL.inc;
