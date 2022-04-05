@@ -100,6 +100,7 @@ public class GameApp extends GameApplication {
         settings.setIntroEnabled(false);
         settings.setTitle("Cheepapou Game");
         settings.setMainMenuEnabled(true);
+
     }
 
     private LazyValue<LevelEndScene> levelEndScene = new LazyValue<>(() -> new LevelEndScene());
