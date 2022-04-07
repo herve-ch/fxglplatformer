@@ -12,7 +12,6 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
- *
  * @author rv_ch
  */
 public class WebApp extends JProApplication {
@@ -26,8 +25,10 @@ public class WebApp extends JProApplication {
 //        root.getChildren().setAll(GameApplication.embeddedLaunch(app));
 //        Scene scene = new Scene(root);
 //        stage.setScene(scene);
-
-        GameApplication.embeddedLaunch(app);
+        StackPane root = new StackPane();
+        root.getChildren().setAll(GameApplication.embeddedLaunch(app));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
 
     }
 
