@@ -230,8 +230,8 @@
                 <configuration>
                     <visible>false</visible>
                     <JVMArgs>
-                        <JVMArg>--add-exports</JVMArg>
-                        <JVMArg>java.desktop/sun.awt.image=ALL-UNNAMED</JVMArg>
+                        <!--<JVMArg>- -add-exports</JVMArg>
+                        <JVMArg>java.desktop/sun.awt.image=ALL-UNNAMED</JVMArg>-->
                     </JVMArgs>
                     <mainClassName>${jproMainClassName}</mainClassName>
                     <openingPath>/</openingPath>
